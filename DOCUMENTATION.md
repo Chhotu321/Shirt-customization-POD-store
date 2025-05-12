@@ -4,43 +4,6 @@
 
 The T-Shirt Customizer is a React application built with Vite and Tailwind CSS that allows users to customize both the front and back of a t-shirt. Users can upload images, add text with various styling options, zoom and pan the t-shirt view, and save their customizations for later editing. The application features three different UI themes that can be switched using the Alt+Q keyboard shortcut.
 
-## Table of Contents
-
-1. [Project Setup](#project-setup)
-2. [Features](#features)
-3. [Implementation Details](#implementation-details)
-4. [Challenges and Solutions](#challenges-and-solutions)
-5. [Future Enhancements](#future-enhancements)
-
-## Project Setup
-
-### Prerequisites
-
-- Node.js (v14.0.0 or higher)
-- npm (v6.0.0 or higher)
-
-### Installation
-
-1. Clone the repository:
-   \`\`\`bash
-   git clone https://github.com/yourusername/tshirt-customizer.git
-   cd tshirt-customizer
-   \`\`\`
-
-2. Install dependencies:
-   \`\`\`bash
-   npm install
-   \`\`\`
-
-3. Start the development server:
-   \`\`\`bash
-   npm run dev
-   \`\`\`
-
-4. Build for production:
-   \`\`\`bash
-   npm run build
-   \`\`\`
 
 ### Project Structure
 
@@ -59,6 +22,36 @@ tshirt-customizer/
 ├── package.json          # Dependencies and scripts
 └── DOCUMENTATION.md      # This documentation file
 \`\`\`
+
+## Project Setup
+
+### Prerequisites
+
+- Node.js (v14.0.0 or higher)
+- npm (v6.0.0 or higher)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/tshirt-customizer.git
+   cd tshirt-customizer
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+   ```bash
+   npm run build
+   ```
 
 ## Features
 
@@ -90,16 +83,7 @@ tshirt-customizer/
 - Smaller thumbnail preview in the upload area
 - Remove image button
 
-### 5. Text Customization
 
-- Multi-line text input (up to 3 lines)
-- Character counter (max 100 characters)
-- Line counter
-- Draggable text positioning on the t-shirt
-- Font family selection
-- Font size selection
-- Font color selection
-- Bold and italic styling options
 
 ### 6. T-Shirt Customization
 
@@ -132,7 +116,7 @@ tshirt-customizer/
 
 The application uses a state variable to track the current view and conditionally renders the appropriate content:
 
-\`\`\`jsx
+```jsx
 const [currentView, setCurrentView] = useState('front')
 
 // Computed values based on current view
@@ -140,13 +124,13 @@ const uploadedImage = currentView === 'front' ? frontImage : backImage
 const setUploadedImage = currentView === 'front' ? setFrontImage : setBackImage
 const textPosition = currentView === 'front' ? frontTextPosition : backTextPosition
 const setTextPosition = currentView === 'front' ? setFrontTextPosition : setBackTextPosition
-\`\`\`
+```
 
 ### Zoom and Pan Functionality
 
 The application uses a combination of state variables and CSS transforms to implement zoom and pan functionality:
 
-\`\`\`jsx
+```jsx
 const [zoomLevel, setZoomLevel] = useState(1)
 const [panPosition, setPanPosition] = useState({ x: 0, y: 0 })
 const [isPanning, setIsPanning] = useState(false)
@@ -176,77 +160,21 @@ const handleZoomOut = () => {
     {/* T-shirt content */}
   </div>
 </Draggable>
-\`\`\`
+```
 
-### Multiple Form Management
 
-The application uses multiple instances of React Hook Form to manage the front and back forms:
-
-\`\`\`jsx
-// Form for front view
-const frontForm = useForm({
-  defaultValues: {
-    height: 180,
-    weight: 80,
-    build: "athletic",
-    frontText: "",
-    size: "M",
-  },
-})
-
-// Form for back view
-const backForm = useForm({
-  defaultValues: {
-    backText: "",
-  },
-})
-
-// Get the active form based on current view
-const activeForm = currentView === 'front' ? frontForm : backForm
-\`\`\`
 
 ### Draggable Text
 
 The application uses the `react-draggable` library to allow users to position text anywhere on the t-shirt:
 
-\`\`\`jsx
-<Draggable
-  bounds="parent"
-  defaultPosition={textPosition}
-  position={textPosition}
-  onStop={handleDragStop}
-  disabled={isPanning}
->
-  <div className={`${isPanning ? '' : 'cursor-move'} absolute`}>
-    <p className="t-shirt-text" style={{ /* text styling */ }}>
-      {watch(textFieldName)}
-    </p>
-  </div>
-</Draggable>
-\`\`\`
+
 
 ### Saved Customizations
 
 The application uses localStorage to persist saved customizations, including both front and back data:
 
-\`\`\`jsx
-const customization = {
-  id: editingId || Date.now().toString(),
-  name: combinedData.frontText?.substring(0, 20) || `Design ${savedCustomizations.length + 1}`,
-  data: {
-    ...combinedData,
-    tshirtColor: selectedColor,
-    frontImage: frontImage,
-    backImage: backImage,
-    frontTextPosition: frontTextPosition,
-    backTextPosition: backTextPosition,
-    // other data
-  },
-  // timestamps
-};
 
-localStorage.setItem("tshirtCustomizations", JSON.stringify(updatedCustomizations));
-\`\`\`
 
 ## Challenges and Solutions
 
@@ -289,20 +217,8 @@ localStorage.setItem("tshirtCustomizations", JSON.stringify(updatedCustomization
 - Used consistent styling and layout for both views
 - Added helpful tooltips and instructions
 
-## Future Enhancements
-
-1. **Advanced Image Manipulation**: Allow users to resize, rotate, and crop uploaded images.
-2. **Multiple Text Elements**: Support adding multiple text elements with different styles and positions.
-3. **Export Options**: Add the ability to export the design as an image or PDF.
-4. **User Accounts**: Implement user authentication to store customizations in the cloud.
-5. **Social Sharing**: Add options to share designs on social media.
-6. **3D Preview**: Implement a 3D preview of the t-shirt to see how the design looks from different angles.
-7. **Price Calculation**: Add dynamic pricing based on customization options.
-8. **Order Processing**: Integrate with e-commerce functionality to allow users to purchase their customized t-shirts.
-9. **Side View**: Add a side view option to complete the 360-degree customization experience.
-10. **Template Designs**: Add pre-made template designs that users can customize.
+ 0. **Template Designs**: Add pre-made template designs that users can customize.
 
 ## Conclusion
 
 The T-Shirt Customizer is a feature-rich application that allows users to create personalized t-shirt designs with ease. It provides a user-friendly interface with front and back customization, zoom and pan functionality, drag-and-drop text positioning, and the ability to save and edit customizations. The application is built with modern web technologies and follows best practices for responsive design and user experience.
- 
