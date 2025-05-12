@@ -10,7 +10,8 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
-    minify: "terser",
+    // Change from 'terser' to 'esbuild' (which is included in Vite)
+    minify: "esbuild",
     sourcemap: true,
   },
 })
