@@ -305,3 +305,4 @@ localStorage.setItem("tshirtCustomizations", JSON.stringify(updatedCustomization
 ## Conclusion
 
 The T-Shirt Customizer is a feature-rich application that allows users to create personalized t-shirt designs with ease. It provides a user-friendly interface with front and back customization, zoom and pan functionality, drag-and-drop text positioning, and the ability to save and edit customizations. The application is built with modern web technologies and follows best practices for responsive design and user experience.
+ 
